@@ -2,8 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using ToffeeTavern.Creators;
 using ToffeeTavern.Creators.Interfaces;
 using ToffeeTavern.Data;
+using ToffeeTavern.Deleters;
+using ToffeeTavern.Deleters.Interfaces;
 using ToffeeTavern.Getters;
 using ToffeeTavern.Getters.Interfaces;
+using ToffeeTavern.Updaters;
+using ToffeeTavern.Updaters.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,9 +36,15 @@ builder.Services.AddCors(options =>
 // Creators
 builder.Services.AddScoped<ICreateNewCharacter, CreateNewCharacter>();
 
+// Deleters
+builder.Services.AddScoped<IDeleteCharacterById, DeleteCharacterById>();
+
 // Getters
 builder.Services.AddScoped<IGetAllCharacters, GetAllCharacters>();
 builder.Services.AddScoped<IGetCharacterById, GetCharacterById>();
+
+// Updaters
+builder.Services.AddScoped<IUpdateCharacterById, UpdateCharacterById>();
 
 var app = builder.Build();
 
